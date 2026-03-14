@@ -2,7 +2,16 @@
     "mcpServers": {
         "zig-docs": {
             "command": "npx",
-            "args": ["-y", "zig-mcp@latest"]
+            "args": [
+                "-y",
+                "zig-mcp@latest"
+            ],
+            "alwaysAllow": [
+                "list_builtin_functions",
+                "get_builtin_function",
+                "search_std_lib",
+                "get_std_lib_item"
+            ]
         }
     }
 }
