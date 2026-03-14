@@ -6,8 +6,9 @@ platforms = ["linux-64", "osx-64", "osx-arm64"]
 version = "0.1.0"
 
 [tasks]
-build = "zig build-exe src/main.zig -target thumb-freestanding-eabi -mcpu cortex_m3 -T linker.ld -fno-entry -O ReleaseSmall --name kernel.elf"
-start = { cmd = "qemu-system-arm -M lm3s6965evb -kernel kernel.elf -nographic -semihosting", depends-on = ["build"]}
+create-build-dir = "mkdir -p build-kernel"
+build = { cmd = "zig build-exe src/main.zig -target thumb-freestanding-eabi -mcpu cortex_m3 -T linker.ld -fno-entry -O ReleaseSmall -femit-bin=./build-kernel/kernel.elf --name kernel.elf", depends-on = ["create-build-dir"]}
+start = { cmd = "qemu-system-arm -M lm3s6965evb -kernel ./build-kernel/kernel.elf -nographic -semihosting", depends-on = ["build"]}
 fmt = "zig fmt src/"
 lint-ci = "zig fmt --check src/"
 lint-fix = "zig fmt src/"
