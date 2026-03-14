@@ -1,15 +1,8 @@
 {
     "mcpServers": {
-        "zignet": {
+        "zig-docs": {
             "command": "npx",
-            "args": [
-                "-y",
-                "zignet"
-            ],
-            "disabled": false,
-            "alwaysAllow": [
-                "get_zig_docs"
-            ]
+            "args": ["-y", "zig-mcp@latest"]
         }
     }
 }
