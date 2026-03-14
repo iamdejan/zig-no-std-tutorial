@@ -7,7 +7,7 @@ version = "0.1.0"
 
 [tasks]
 build = "zig build-exe src/main.zig -target thumb-freestanding-eabi -mcpu cortex_m3 -T linker.ld -fno-entry -O ReleaseSmall --name kernel.elf"
-start = { cmd = "qemu-system-arm -M lm3s6965evb -kernel kernel.elf -nographic", depends-on = ["build"]}
+start = { cmd = "qemu-system-arm -M lm3s6965evb -kernel kernel.elf -nographic -semihosting", depends-on = ["build"]}
 fmt = "zig fmt src/"
 lint-ci = "zig fmt --check src/"
 lint-fix = "zig fmt src/"

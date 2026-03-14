@@ -11,17 +11,31 @@ export var vector_table linksection(".vectors") = VectorTable{
     .reset_handler = _start,
 };
 
+// Semihosting operation codes
+const SYS_EXIT = 0x18;
+const ADP_Stopped_ApplicationExit = 0x20026;
+
+fn exitQemu() noreturn {
+    // Register R0: Operation (SYS_EXIT = 0x18)
+    // Register R1: Parameter (ADP_Stopped_ApplicationExit = 0x20026)
+    asm volatile (
+        \\ mov r0, %[op]
+        \\ mov r1, %[arg]
+        \\ bkpt 0xab
+        :
+        : [op] "r" (@as(u32, SYS_EXIT)),
+          [arg] "r" (@as(u32, ADP_Stopped_ApplicationExit)),
+        : .{ .r0 = true, .r1 = true });
+
+    while (true) {}
+}
+
 export fn _start() noreturn {
     const msg = "Hello LM3S6965 from Zig!\n";
     for (msg) |c| {
         UART0_DR.* = @as(u32, c);
     }
 
-    while (true) {
-        asm volatile ("wfi");
-    }
-}
-
-pub fn panic(_: []const u8, _: ?*anyopaque, _: ?usize) noreturn {
-    while (true) {}
+    // Instead of while(true), call exit
+    exitQemu();
 }
