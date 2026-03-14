@@ -1,0 +1,18 @@
+[workspace]
+authors = ["Giovanni Dejan <giovanni.dejan@binus.ac.id>"]
+channels = ["conda-forge"]
+name = "zig-no-std-tutorial"
+platforms = ["linux-64", "osx-64", "osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+start = "zig build run"
+build = "zig build"
+test = "zig build test --summary all"
+fmt = "zig fmt src/"
+lint-ci = "zig fmt --check src/"
+lint-fix = "zig fmt src/"
+
+[dependencies]
+zig = ">=0.15.2,<0.16"
+pre-commit = ">=4.5.1,<5"
