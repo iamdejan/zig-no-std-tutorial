@@ -53,7 +53,8 @@ Root/
 │       ├── code_generation.md
 │       └── code_validation.md
 ├── src/                    # Source code directory
-│   ├── main.zig            # Main entry point
+│   ├── main.zig            # Main entry point (ARM Cortex-M3 embedded)
+│   ├── format.zig          # Formatted print for no-std environments
 │   ├── tests.zig           # Test aggregation file (re-exports all tests)
 │   ├── stl.zig             # C++ STL wrappers (unordered_set, unordered_map, priority_queue)
 │   ├── test_runner.zig     # Custom test runner
@@ -82,8 +83,8 @@ This section explains the purpose of each file in the repository:
 
 | File | Description |
 |------|-------------|
-| [`src/main.zig`](src/main.zig) | Main entry point of the application. Demonstrates using C++ STL containers (unordered_set, unordered_map, priority_queue) via Zig wrappers. |
-| [`src/tests.zig`](src/tests.zig) | Test aggregation file that imports modules with tests and re-declares them for test runner discovery. Contains 8 unit tests covering message and STL functionality. |
+| [`src/main.zig`](src/main.zig) | Main entry point of the application. Runs on ARM Cortex-M3 (LM3S6965EVB) and demonstrates formatted print using the format module. |
+| [`src/format.zig`](src/format.zig) | Formatted print implementation for no-std Zig environments. Provides `println` and `printlnStr` functions similar to Rust's defmt crate. Supports integers (u8, u16, u32, i8, i16, i32, etc.) and string slices. |
 | [`src/stl.zig`](src/stl.zig) | Zig wrappers for C++ STL containers. Provides `UnorderedSetInt`, `UnorderedMapIntInt`, and `PriorityQueueInt` structs that wrap C++ STL containers. |
 | [`src/test_runner.zig`](src/test_runner.zig) | Custom test runner with colored output, slow test tracking, and memory leak detection. |
 | [`src/cpp/stl_c_wrappers.h`](src/cpp/stl_c_wrappers.h) | Pure C header file providing C ABI for C++ STL containers. Used by Zig's `@cImport`. |

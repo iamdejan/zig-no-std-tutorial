@@ -1,5 +1,8 @@
 const UART0_DR = @as(*volatile u32, @ptrFromInt(0x4000C000));
 
+// Import the format module
+const format = @import("format.zig");
+
 // Change 'struct' to 'extern struct' to ensure C-compatible memory layout
 pub const VectorTable = extern struct {
     initial_stack_pointer: *anyopaque,
@@ -30,11 +33,31 @@ fn exitQemu() noreturn {
     while (true) {}
 }
 
+/// Exit function that can be called from user code
+pub fn exit() noreturn {
+    exitQemu();
+}
+
 export fn _start() noreturn {
-    const msg = "Hello LM3S6965 from Zig!\n";
-    for (msg) |c| {
-        UART0_DR.* = @as(u32, c);
-    }
+    // Print simple string using printlnStr
+    format.printlnStr("Hello, world!");
+
+    // Print formatted integer with type specifier
+    const x: u8 = 42;
+    format.println("x={=u8}", .{x});
+
+    // Print formatted integer with simple placeholder
+    const y: u16 = 123;
+    format.println("y={}", .{y});
+
+    // Print negative integer
+    const neg: i32 = -456;
+    format.println("neg={}", .{neg});
+
+    // Print multiple integer values
+    const a: u8 = 10;
+    const b: u16 = 20;
+    format.println("a={}, b={}", .{ a, b });
 
     // Instead of while(true), call exit
     exitQemu();
