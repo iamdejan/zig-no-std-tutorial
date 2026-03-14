@@ -6,9 +6,8 @@ platforms = ["linux-64", "osx-64", "osx-arm64"]
 version = "0.1.0"
 
 [tasks]
-start = "zig build run"
-build = "zig build"
-test = "zig build test --summary all"
+build = "zig build-exe src/main.zig -target thumb-freestanding-eabi -mcpu cortex_m3 -T linker.ld -fno-entry -O ReleaseSmall --name kernel.elf"
+start = { cmd = "qemu-system-arm -M lm3s6965evb -kernel kernel.elf -nographic", depends-on = ["build"]}
 fmt = "zig fmt src/"
 lint-ci = "zig fmt --check src/"
 lint-fix = "zig fmt src/"
