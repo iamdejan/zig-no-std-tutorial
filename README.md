@@ -1,6 +1,6 @@
-# Zig Pixi Template
+# Zig `no_std` Tutorial
 
-This is a template repository for Zig-based projects, using Pixi as a version manager for Zig.
+This is an example repository to demonstrate Zig language's capability to run in `no_std` environment.
 
 ## Prerequisites
 
