@@ -60,21 +60,14 @@ Root/
 ├── .gitignore              # Git ignore rules
 ├── .gitattributes          # Git attributes
 ├── .editorconfig           # Editor configuration
-├── .pre-commit-config.yaml # Pre-commit hooks configuration
 ├── AGENTS.md               # Coding agent rules and guidelines
 ├── LICENSE.txt             # Project license
 ├── linker.ld               # ARM linker script
-├── .github/                # GitHub workflows
-│   └── workflows/
-│       ├── pr-pipeline.yaml
-│       └── trunk-pipeline.yaml
-├── .kilocode/              # Kilo Code assistant rules
-│   └── rules/
-│       ├── code_generation.md
-│       └── code_validation.md
-├── src/                    # Source code directory
-│   ├── main.zig            # Main entry point (ARM Cortex-M3 embedded)
-│   └── format.zig          # Formatted print for no-std environments
+├── .kilocode/              # Kilo Code configuration
+│   └── mcp.json
+└── src/                    # Source code directory
+    ├── main.zig            # Main entry point (ARM Cortex-M3 embedded)
+    └── format.zig          # Formatted print for no-std environments
 ```
 
 This section explains the purpose of each file in the repository:
@@ -88,7 +81,6 @@ This section explains the purpose of each file in the repository:
 | [`.gitignore`](.gitignore) | Git ignore rules specifying which files and directories should be excluded from version control. |
 | [`.gitattributes`](.gitattributes) | Git attributes configuration for handling file types and line endings. |
 | [`.editorconfig`](.editorconfig) | Editor configuration that ensures consistent coding styles across different editors and IDEs. |
-| [`.pre-commit-config.yaml`](.pre-commit-config.yaml) | Pre-commit hook configuration for code quality checks. |
 | [`AGENTS.md`](AGENTS.md) | Coding agent rules and guidelines for this project. |
 | [`LICENSE.txt`](LICENSE.txt) | Project license file. |
 | [`linker.ld`](linker.ld) | ARM linker script for the LM3S6965EVB target. |
@@ -100,10 +92,3 @@ This section explains the purpose of each file in the repository:
 |------|-------------|
 | [`src/main.zig`](src/main.zig) | Main entry point of the application. Runs on ARM Cortex-M3 (LM3S6965EVB) and demonstrates formatted print using the format module. |
 | [`src/format.zig`](src/format.zig) | Formatted print implementation for no-std Zig environments. Provides `println` and `printlnStr` functions similar to Rust's defmt crate. Supports integers (u8, u16, u32, i8, i16, i32, etc.) and string slices. |
-
-### Configuration Directories
-
-| Directory | Description |
-|-----------|-------------|
-| [`.github/workflows/`](.github/workflows) | GitHub Actions workflow files for CI/CD pipelines. Contains `pr-pipeline.yaml` for pull request checks and `trunk-pipeline.yaml` for trunk-based development. |
-| [`.kilocode/rules/`](.kilocode/rules) | Kilo Code assistant rules for code generation and validation. Contains guidelines for writing well-documented Zig code. |
