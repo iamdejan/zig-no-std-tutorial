@@ -13,12 +13,7 @@ Before running this program, ensure you have the following installed:
    pixi install
    ```
 
-3. **Pre-commit Hooks** - Install the pre-commit hooks to ensure code quality:
-   ```bash
-   pixi run pre-commit install --hook-type pre-push
-   ```
-
-4. **Node.js and npm** - Required for running MCP servers via `npx`. Install Node.js (which includes npm) from [https://nodejs.org/](https://nodejs.org/) or use your system package manager:
+3. **Node.js and npm** - Required for running MCP servers via `npx`. Install Node.js (which includes npm) from [https://nodejs.org/](https://nodejs.org/) or use your system package manager:
    - **Ubuntu/Debian**: `sudo apt-get install nodejs npm`
    - **macOS**: `brew install node`
    - **Windows**: Download from [https://nodejs.org/](https://nodejs.org/)
@@ -29,7 +24,7 @@ Before running this program, ensure you have the following installed:
    npm --version
    ```
 
-5. **QEMU (qemu-system-arm)** - Required for emulating ARM programs. Install via your system package manager:
+4. **QEMU (qemu-system-arm)** - Required for emulating ARM programs. Install via your system package manager:
    - **Ubuntu/Debian**: `sudo apt-get install qemu-system-arm`
    - **macOS**: `brew install qemu`
    - **Windows**: Download from [https://www.qemu.org/](https://www.qemu.org/)
